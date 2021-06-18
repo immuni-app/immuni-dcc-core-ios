@@ -62,10 +62,6 @@
 "err.pub-key-irretrievable" = "Cannot retrieve public key.";
 "err.misc" = "Something went wrong.";
 "err.barcode" = "Barcode Error";
-"err.cam" = "Cannot Find Camera";
-"err.cam.desc" = "There seems to be a problem with the camera on your device.";
-"err.cam.perm" = "Camera Permissions";
-"err.cam.perm.desc" = "Please open Settings and grant permission for this app to use your camera.";
 "btn.cancel" = "Cancel";
 "info.outdated" = "Update Available";
 "info.outdated.body" = "This application is not up to date. Please open the App Store and download the newest version!";
