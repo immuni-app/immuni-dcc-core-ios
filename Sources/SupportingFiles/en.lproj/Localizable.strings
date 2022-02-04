@@ -96,11 +96,6 @@
 "Something went wrong." = "Something went wrong.";
 "Barcode reading Error" = "Barcode reading Error";
 
-"No camera available" = "No camera available";
-"The app cannot access the camera" = "The app cannot access the camera.";
-"Camera Permissions" = "Camera Permissions";
-"Please open Settings and grant permission for this app to use your camera." = "Please open Settings and grant permission for this app to use your camera.";
-
 "Update available" = "Update available";
 "This version of the app is out of date." = "This version of the app is out of date. Please update from the AppStore to a newer version";
 
