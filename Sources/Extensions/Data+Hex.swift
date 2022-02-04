@@ -18,41 +18,35 @@
  * ---license-end
  */
 //
-//  JSON.swift
-//  
+//  Data+hexString.swift
 //
-//  Created by Yannick Spreen on 5/12/21.
+//
+//  Created by Yannick Spreen on 4/14/21.
 //
 
 import Foundation
-import SwiftyJSON
 
-public extension JSON {
-  init(parseJSONC json: String) {
-    let json = json.replacingOccurrences(of: "\r", with: "\n").split(separator: "\n").filter {
-      !$0.trimmingCharacters(in: [" ", "\t"]).starts(with: "//")
-    }.joined(separator: "\n")
-    self = JSON(parseJSON: json)
-  }
-
-  mutating func merge(other: JSON) {
-    if self.type == other.type {
-      switch self.type {
-      case .dictionary:
-        for (key, _) in other {
-          self[key].merge(other: other[key])
+extension Data {
+    public init?(hexString: String) {
+        let len = hexString.count / 2
+        var data = Data(capacity: len)
+        var numX = hexString.startIndex
+        for _ in 0..<len {
+          let numY = hexString.index(numX, offsetBy: 2)
+          let bytes = hexString[numX..<numY]
+          if var num = UInt8(bytes, radix: 16) {
+            data.append(&num, count: 1)
+          } else {
+            return nil
+          }
+          numX = numY
         }
-      default:
-        self = other
-      }
-    } else {
-      self = other
+        self = data
     }
-  }
 
-  func mergeAndOverride(other: JSON) -> JSON {
-    var merged = self
-    merged.merge(other: other)
-    return merged
-  }
+    public var uint: [UInt8] { [UInt8](self) }
+    public var hexString: String {
+      let format = "%02hhx"
+      return self.map { String(format: format, $0) }.joined()
+    }
 }

@@ -1,7 +1,6 @@
-//
 /*-
  * ---license-start
- * eu-digital-green-certificates / dgca-app-core-ios
+ * eu-digital-green-certificates / dgca-verifier-app-ios
  * ---
  * Copyright (C) 2021 T-Systems International GmbH and all other contributors
  * ---
@@ -18,19 +17,29 @@
  * limitations under the License.
  * ---license-end
  */
-//  
-//  HCertEntry.swift
 //
+//  CoreManager.swift
 //  
-//  Created by Yannick Spreen on 4/28/21.
-//  
+//
+//  Created by Igor Khomiak on 21.10.2021.
+//
 
-import Foundation
+#if os(iOS)
+import UIKit
+#else
+import AppKit
+#endif
 
-public protocol HCertEntry {
-  var info: [InfoSection] { get }
-  var walletInfo: [InfoSection] { get }
-  var typeAddon: String { get }
-  var uvci: String { get }
-  var validityFailures: [String] { get }
+public class CoreManager {
+    public static var shared = CoreManager()
+    
+#if os(iOS)
+    public static var cachedQrCodes = [String: UIImage]()
+#else
+    public static var cachedQrCodes = [String: NSImage]()
+#endif
+
+    public static var publicKeyEncoder: PublicKeyStorageDelegate?
+
+    lazy public var config = HCertConfig.default
 }

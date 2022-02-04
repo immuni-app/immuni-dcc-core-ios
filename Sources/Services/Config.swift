@@ -27,23 +27,17 @@
 import Foundation
 import SwiftyJSON
 
-public struct Config {
+public class Config {
   public static func merge(_ old: JSON, with new: JSON) -> JSON {
     old.mergeAndOverride(other: new)
   }
 
   public static func load() -> JSON {
-    guard
-      let path = Bundle.main.resourcePath
-    else {
-      return .null
-    }
+    guard let path = Bundle.main.resourcePath else { return .null }
 
     let context = "context.jsonc"
     let fileURL = URL(fileURLWithPath: path + "/\(context)")
-    guard let fileContents = try? Data(contentsOf: fileURL) else {
-      return .null
-    }
+    guard let fileContents = try? Data(contentsOf: fileURL) else { return .null }
     let string = String(data: fileContents, encoding: .utf8) ?? ""
     return JSON(parseJSONC: string)
   }

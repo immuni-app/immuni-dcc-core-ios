@@ -28,7 +28,7 @@
 
 import Foundation
 
-struct Signature {
+class Signature {
   public static func verify(_ signature: Data, for data: Data, with publicKey: SecKey) -> Bool {
     var signature = signature
     var alg: SecKeyAlgorithm
@@ -41,7 +41,7 @@ struct Signature {
     } else {
       return false
     }
-
+    
     var error: Unmanaged<CFError>?
     let result = SecKeyVerifySignature(
       publicKey,
@@ -51,7 +51,7 @@ struct Signature {
       &error
     )
     if let err = error?.takeUnretainedValue().localizedDescription {
-      print(err)
+        print(err)
     }
     error?.release()
 

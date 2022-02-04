@@ -17,13 +17,12 @@ let package = Package(
     // Dependencies declare other packages that this package depends on.
     .package(url: "https://github.com/SwiftyJSON/SwiftyJSON", from: "5.0.1"),
     .package(url: "https://github.com/Alamofire/Alamofire", from: "5.4.3"),
-    .package(
-      name: "JSONSchema",
+    .package(url: "https://github.com/filom/ASN1Decoder", from: "1.7.1"),
+    .package( name: "JSONSchema",
       url: "https://github.com/eu-digital-green-certificates/JSONSchema.swift",
       .branch("master")
     ),
-    .package(
-      name: "SwiftCBOR",
+    .package( name: "SwiftCBOR",
       url: "https://github.com/eu-digital-green-certificates/SwiftCBOR",
       .branch("master")
     ),
@@ -37,7 +36,8 @@ let package = Package(
         "SwiftCBOR",
         "SwiftyJSON",
         "JSONSchema",
-        "Alamofire"
+        "Alamofire",
+        "ASN1Decoder"
       ],
       path: "Sources"),
     .testTarget(
@@ -47,8 +47,8 @@ let package = Package(
         // Copy Tests/ExampleTests/Resources directories as-is.
         // Use to retain directory structure.
         // Will be at top level in bundle.
-        .copy("dgc-testdata"),
-        .process("en.lproj/Localizable.strings")
+        //.copy("dgc-testdata"),
+        //.process("en.lproj/Localizable.strings")
       ])
   ]
 )
